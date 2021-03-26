@@ -1,0 +1,37 @@
+{% extends 'base.html'%}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1>User options</h1>
+    <table>
+        <tr>
+            <td><a href = "{{url_for('addbookmark') }}">(A) Add a bookmark </a></td>
+        </tr>
+        <tr>
+            <td>(B) List bookmarks by date</td>
+        </tr>
+        <tr>
+            <td>(T) List bookmarks by title</td>
+        </tr>
+        <tr>
+            <td>(E) Edit a bookmark</td>
+        </tr>
+        <tr>
+            <td>(D) Edit a bookmark</td>
+        </tr>
+        <tr>
+            <td>(G) Import GitHub stars</td>
+        </tr>
+        <tr>
+            <td>(Q) Quit</td>
+        </tr>
+    </table>
+   
+
+
+</div>
+{% endblock %}

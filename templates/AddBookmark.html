@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang = "en">
+   <head></head>
+   <body>
+      <form action = "{{url_for('adddata') }}" method = "POST">
+         <h3>Add a Bookmark</h3>
+
+         Id<br>
+         <input type = "text" name = "id" /><br>
+         
+         Title<br>
+         <textarea name = "title" ></textarea><br>
+         
+         url<br>
+         <input type = "text" name = "url" /><br>
+         
+         notes<br>
+         <input type = "text" name = "notes" /><br>
+         <input type = "submit" value = "submit" /><br>
+      </form>
+      
+   </body>
+</html>

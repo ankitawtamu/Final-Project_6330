@@ -1,3 +1,5 @@
+import unittest
+import sqlite3
 from sqlalchemy import MetaData
 from flask import Flask, jsonify, request, redirect, url_for, render_template
 from http import HTTPStatus
@@ -7,22 +9,31 @@ from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String
 import sqlite3 as sql
 from datetime import datetime
 from test import bookmarks, db
-
-
-import pytest
-
-
+from Flaskapp import *
+from Flaskapp import app
 from Flaskapp import bookmarks
 
-@pytest.fixture
-def test_database_manager_add_bookmark(bookmarks):
+
+con = sqlite3.connect('Barky/bookmarks.db')
+cur = con.cursor()
+
+
+class TestFlaskapp(unittest.TestCase):
+
+
+  def test_add_bookmark(self):
+        tester = app.test_client(self)
+        response = tester.get('adddata')
+        statuscode = response.status_code
+        self.assertEqual(statuscode, 200)
+        
 
     # arrange
-            engine = create_engine('sqlite:///./Barky/bookmarks.db', echo = True)
-            meta = MetaData()
+        engine = create_engine('sqlite:///./Barky/bookmarks.db', echo = True)
+        meta = MetaData()
 
-            bookmarks = Table(
-            'bookmarks', meta, 
+        bookmarks = Table(
+        'bookmarks', meta, 
             Column('id', Integer, primary_key = True), 
             Column('title', String), 
             Column('url', String), 
@@ -30,9 +41,9 @@ def test_database_manager_add_bookmark(bookmarks):
             Column('date_added', String), 
             )
 
-            conn = engine.connect()
+        conn = engine.connect()
            
-            cursor = conn.cursor()
-            data = bookmarks.insert().values(id = 9, title = 'Kapoor', url = 'www', notes = 'notes', date_added = '12.3.34')
-            result = conn.execute(data)
-            assert cursor.fetchone()[0] == 1   
+        cursor = conn.cursor()
+        data = bookmarks.insert().values(id = 8, title = 'Flaskr', url = 'www', notes = 'notes', date_added = '11.3.12')
+        result = conn.execute(data)
+        assert cursor.fetchone()[0] == 1   

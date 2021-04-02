@@ -8,7 +8,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String
 import sqlite3 as sql
 from datetime import datetime
-from test import bookmarks, db
+#from Test import bookmarks
 from Flaskapp import *
 from Flaskapp import app
 from Flaskapp import bookmarks
@@ -22,10 +22,10 @@ class TestFlaskapp(unittest.TestCase):
 
 
   def test_add_bookmark(self):
-        tester = app.test_client(self)
-        response = tester.get('adddata')
+        '''tester = app.test_client(self)
+        response = tester.get('/adddata')
         statuscode = response.status_code
-        self.assertEqual(statuscode, 200)
+        self.assertEqual(statuscode, 200)'''
         
 
     # arrange
@@ -43,7 +43,10 @@ class TestFlaskapp(unittest.TestCase):
 
         conn = engine.connect()
            
-        cursor = conn.cursor()
         data = bookmarks.insert().values(id = 8, title = 'Flaskr', url = 'www', notes = 'notes', date_added = '11.3.12')
-        result = conn.execute(data)
-        assert cursor.fetchone()[0] == 1   
+        cur.execute("select * from bookmarks where id = 8")
+        x = cur.fetchone()
+        assert x == ( 8, 'Flaskr','www', 'notes', '11.3.12')
+
+if __name__ == "__main__":
+    unittest.main()

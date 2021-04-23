@@ -119,6 +119,13 @@ class Testapp(unittest.TestCase):
         test_mock = deletecomplaint
         assert test_mock is deletecomplaint
 
+    # Testing list all complaints function by using mocking method
+    @mock.patch('app.list')
+    def test_list(self, test_mock):
+        test_mock = list
+        assert test_mock is list
+    
+
     # Testing event handler function by using mocking method
     @mock.patch('app.Event_handler')
     def test_Event_handler(self, test_mock):

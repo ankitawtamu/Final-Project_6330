@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+            <div class="content">
+            <form action = "{{url_for('addcomplaint') }}" method = "POST">
+                <h1>Lodge a compliant</h1>
+                Details<br>
+                <label for="name">Full name</label>
+                <input type = "text" name = "name" /><br>
+                <label for="description">description</label>
+                <input type = "text" name = "description" /><br>
+                <select id="store" name="store_name">
+                    <option value="walmart">Walmart</option>
+                    <option value="kroger">Kroger</option>
+                    <option value="sam's Club">Sam's Club SLK</option>
+                    <option value="natural grocery">Natural grocery</option>
+                  </select>
+                <input type = "submit" value = "submit" /><br>
+            </form>
+            </div>
+            {% endblock %}
+            
